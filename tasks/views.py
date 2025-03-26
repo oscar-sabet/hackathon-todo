@@ -4,4 +4,4 @@ from django.http import HttpResponse
 
 # Create your views here.
 def tasks(request):
-    return HttpResponse("Hello, tasks!")
+    return HttpResponse("Hello, DoodleTo tasks!")
