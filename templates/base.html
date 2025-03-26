@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>{% block title %} Toodledo {% endblock %}</title>
+
+        <meta name="description" content="Toodledo: Organize, manage, and track your tasks effortlessly with our task management app.">
+        <meta name="keywords" content="toodledo, task management, task manager, task app, task organizer, task tracker, task list, task planner, task scheduler, task reminder, task management app, task manager app, task app, task organizer app, task tracker app, task list app, task planner app, task scheduler app, task reminder app">
+        <meta name="author" content="Toodledo"> 
+
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'favicons/site.webmanifest' %}">
+
+        <!-- Bootstrap 5 CSS -->
+        <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+        crossorigin="anonymous">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+        <!-- Font Awesome -->
+        <link href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        <!-- Navigation-->
+
+        <nav id="navbar" class="navbar navbar-expand-lg shadow-sm">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="{% static 'images/logo.png' %}" alt="Toodledo Logo" width="30" height="30">
+                    Toodledo
+                </a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarText"
+                        aria-controls="navbarText"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link brand-1 {% if request.path == '/tasks/list/' %}active{% endif %}"
+                                aria-current="page"
+                                href="{% url 'list' %}">Task List</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link brand-2 {% if request.path == '/tasks/board/' %}active{% endif %}"
+                                aria-current="page"
+                                href="{% url 'board' %}">Project Board</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    <span class="navbar-text text-muted">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'account_logout' %}">Logout {{ user.username }} <i class="fa-solid fa-user"></i></a>
+                        {% else %}
+                            <a href="{% url 'account_login' %}">Login</a>
+                            <a href="{% url 'account_signup' %}">Register</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- displaying Django messages -->
+        <div class="container">
+            <div class="row">
+            <div class="col-md-8 offset-md-2">
+                {% for message in messages %}
+                <div
+                class="alert {{ message.tags }} alert-dismissible
+                    fade show"
+                id="msg"
+                role="alert"
+                >
+                {{ message | safe }}
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                ></button>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+
+        <main class="flex-shrink-0 main-bg">
+            {% if user.is_authenticated %}
+            <p class="text-end m-3">You are logged in as {{ user }}</p>
+            {% else %}
+            <p class="text-end m-3">You are not logged in</p>
+            {% endif %} {% block content %}
+
+            {% endblock content %}
+        </main>
+    
+      <!-- Footer -->
+        <footer class="">
+            <div class="container p-4">
+                <h5 class="text-uppercase">Toodledo</h5>
+                <p>Effortlessly manage your tasks, set priorities, and achieve your goals with Toodledo.</p>
+                <div class="text-center p-3">&copy; 2025 Toodledo. All rights reserved.</div>
+            </div>
+        </footer>
+  
+
+        <!-- Bootstrap JS -->
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous'>
+        </script>
+
+        {% block extras %}
+        {% endblock %}  
+    </body>
+</html>
+
