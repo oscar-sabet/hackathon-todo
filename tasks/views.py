@@ -33,6 +33,7 @@ def board(request):
     completed = tasks.filter(status="C")
 
     return render(request, "** insert template **", {
+        "tasks": tasks,  # May not be needed
         "pending": pending,
         "in_progress": in_progress,
         "completed": completed,
