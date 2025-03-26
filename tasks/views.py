@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Task
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -8,6 +9,7 @@ def tasks(request):
     return HttpResponse("Hello, DoodleTo tasks!")
 
 
+@login_required
 def board(request):
     """
     Renders a task board view, categorizing tasks by their status.
@@ -25,8 +27,8 @@ def board(request):
         HttpResponse: A rendered HTML page displaying tasks grouped by their
         status (Pending, In Progress, Completed).
     """
-    order_by = request.GET.get("order_by", "created")
-    tasks = Task.objects.order_by(order_by)
+    tasks = Task.objects.filter(user=request.user)
+    tasks = Task.objects.order_by("due_date")
 
     pending = tasks.filter(status="P")
     in_progress = tasks.filter(status="IP")
