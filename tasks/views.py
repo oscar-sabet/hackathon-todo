@@ -18,11 +18,11 @@ def board(request):
     template for rendering.
 
     Args:
-        request (HttpRequest): The HTTP request object containing metadata about 
-        the request, including GET parameters.
+        request (HttpRequest): The HTTP request object containing metadata
+        about the request, including GET parameters.
 
     Returns:
-        HttpResponse: A rendered HTML page displaying tasks grouped by their 
+        HttpResponse: A rendered HTML page displaying tasks grouped by their
         status (Pending, In Progress, Completed).
     """
     order_by = request.GET.get("order_by", "created")
