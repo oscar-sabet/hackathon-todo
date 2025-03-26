@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1", ".herokuapp.com"]
 
@@ -43,6 +43,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # allauth apps
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    # crispy forms
+    "crispy_forms",
+    "crispy_bootstrap5",
+    # cloudinary
+    "cloudinary_storage",
+    "cloudinary",
+    # User Apps
     'tasks',
 ]
 
@@ -54,6 +65,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # allauth middleware
+    "allauth.account.middleware.AccountMiddleware",
+    # whitenoise middleware
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'todo.urls'
@@ -133,6 +148,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Static files (CSS, JavaScript, images)
 # STATIC_URL = "/static/"
