@@ -1,0 +1,32 @@
+{% block content %}
+
+<div class="kanban-board">
+    <div class="kanban-column">
+        <h2>Add task</h2>
+        <ul>
+            {% for task in pending_tasks %}
+            <li>{{ task.list }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="kanban-column">
+        <h2>Completed</h2>
+        <ul>
+            {% for task in completed_tasks %}
+            <li>{{ mark.completed }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="kanban-column">
+        <h2>Delete task</h2>
+        <ul>
+            {% for task in completed_tasks %}
+            <li>{{ mark.completed }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock content %}
