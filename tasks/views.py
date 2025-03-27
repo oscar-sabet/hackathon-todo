@@ -8,12 +8,10 @@ from .forms import TaskForm
 @login_required
 def task_list(request):
     tasks = Task.objects.filter(user=request.user)  # Restrict to the logged-in user's tasks
-    form = TaskForm()  # Initialize the form for adding tasks
-    return render(
-        request,
-        'tasks/task_list.html',
-        {'form': form, 'tasks': tasks}
-    )
+    # return render(request, 'tasks/task_list.html', {'tasks': tasks})
+
+    form = TaskForm()
+    return render(request, 'tasks/task_list.html', {'form': form, 'tasks': tasks})
 
 
 # Add a new task (assign to the logged-in user)
@@ -26,6 +24,7 @@ def add_task(request):
         return redirect('task_list')
     return render(request, 'tasks/add_task.html')  # Correct template path
 
+
 # Mark a task as completed (only if the user owns the task)
 @login_required
 def mark_completed(request, task_id):
@@ -33,6 +32,7 @@ def mark_completed(request, task_id):
     task.completed = True
     task.save()
     return redirect('task_list')
+
 
 # Delete a task (only if the user owns the task)
 @login_required
@@ -73,5 +73,5 @@ def board(request):
     })
 
 
-def index(request):
-    return render(request, 'tasks/index.html')
+def home(request):
+    return render(request, 'tasks/home.html')
