@@ -49,30 +49,31 @@
                 <h5 class="modal-title text-center" id="createTaskModalLabel">Create New Task</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post" action="{% url 'create_task' %}">
+            <form method="post" action="{% url 'add_task' %}">
                 <div class="modal-body">
                 
                     {% csrf_token %}
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-md-6">
                             {{ form.title|as_crispy_field }}
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             {{ form.status|as_crispy_field }}
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             {{ form.due_date|as_crispy_field }}
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             {{ form.priority|as_crispy_field }}
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             {{ form.category|as_crispy_field }}
                         </div>
-                        <div class="col-12">
+                        <div class="col-md-6">
                             {{ form.description|as_crispy_field }}
                         </div>
-                    </div>
+                    </div>    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn" data-bs-dismiss="modal">Close</button>

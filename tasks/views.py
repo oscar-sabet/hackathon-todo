@@ -2,12 +2,18 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Task
 from django.contrib.auth.decorators import login_required
+from .forms import TaskForm
 
 
 # Display the list of tasks
 def task_list(request):
     tasks = Task.objects.all()
+<<<<<<< HEAD
     return render(request, 'tasks/task_list.html', {'tasks': tasks})
+=======
+    form = TaskForm()
+    return render(request, 'tasks/task_list.html', {'form': form, 'tasks': tasks})
+>>>>>>> origin/chez
 
 # Add a new task
 def add_task(request):
