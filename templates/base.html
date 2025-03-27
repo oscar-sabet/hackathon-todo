@@ -27,9 +27,6 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-        <!-- Font Awesome -->
-        <link href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css" rel="stylesheet">
-
     </head>
 
     <body>
@@ -38,7 +35,7 @@
 
         <nav id="navbar" class="navbar navbar-expand-lg shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}">
+                <a class="navbar-brand" href="">
                     <img src="{% static 'images/logo.png' %}" alt="Toodledo Logo" width="30" height="30">
                     Toodledo
                 </a>
@@ -57,7 +54,7 @@
                             <li class="nav-item">
                                 <a class="nav-link brand-1 {% if request.path == '/tasks/list/' %}active{% endif %}"
                                 aria-current="page"
-                                href="{% url 'list' %}">Task List</a>
+                                href="{% url 'task_list' %}">Task List</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link brand-2 {% if request.path == '/tasks/board/' %}active{% endif %}"
@@ -68,10 +65,10 @@
                     </ul>
                     <span class="navbar-text text-muted">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'account_logout' %}">Logout {{ user.username }} <i class="fa-solid fa-user"></i></a>
+                            <a href="">Logout {{ user.username }} <i class="fa-solid fa-user"></i></a>
                         {% else %}
-                            <a href="{% url 'account_login' %}">Login</a>
-                            <a href="{% url 'account_signup' %}">Register</a>
+                            <a href="">Login</a>
+                            <a href="">Register</a>
                         {% endif %}
                     </span>
                 </div>
@@ -113,18 +110,25 @@
         </main>
     
       <!-- Footer -->
-        <footer class="">
+        <footer class="mt-auto text-center">
             <div class="container p-4">
                 <h5 class="text-uppercase">Toodledo</h5>
                 <p>Effortlessly manage your tasks, set priorities, and achieve your goals with Toodledo.</p>
                 <div class="text-center p-3">&copy; 2025 Toodledo. All rights reserved.</div>
             </div>
         </footer>
-  
+
+        <!-- Font Awesome kit -->
+        <script src='https://kit.fontawesome.com/aa9af45995.js'
+                crossorigin='anonymous'>
+        </script>
 
         <!-- Bootstrap JS -->
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous'>
         </script>
+
+        <!-- Custom JS -->
+        <script src="{% static 'js/script.js' %}"></script>
 
         {% block extras %}
         {% endblock %}  
