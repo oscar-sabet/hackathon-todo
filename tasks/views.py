@@ -2,12 +2,14 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Task
+from django.contrib.auth.decorators import login_required
+
 
 # Display the list of tasks (filtered by user)
 @login_required
 def task_list(request):
-    tasks = Task.objects.filter(user=request.user)
-    return render(request, 'task_list.html', {'tasks': tasks})
+    tasks = Task.objects.all()
+    return render(request, 'tasks/task_list.html', {'tasks': tasks})
 
 # Add a new task (assign to the logged-in user)
 @login_required
@@ -35,3 +37,36 @@ def delete_task(request, task_id):
     if task:
         task.delete()
     return redirect('task_list')
+
+
+# @login_required
+def board(request):
+    """
+    Renders a task board view, categorizing tasks by their status.
+
+    This view retrieves all tasks from the database, orders them based on
+    a query parameter, and filters them into three categories: Pending,
+    In Progress, and Completed. The categorized tasks are then passed to the
+    template for rendering.
+
+    Args:
+        request (HttpRequest): The HTTP request object containing metadata
+        about the request, including GET parameters.
+
+    Returns:
+        HttpResponse: A rendered HTML page displaying tasks grouped by their
+        status (Pending, In Progress, Completed).
+    """
+    # tasks = Task.objects.filter(user=request.user)
+    tasks = Task.objects.order_by("due_date")
+
+    pending = tasks.filter(status="P")
+    in_progress = tasks.filter(status="IP")
+    completed = tasks.filter(status="C")
+
+    return render(request, "tasks/projectboard.html", {
+        "tasks": tasks,  # May not be needed
+        "pending": pending,
+        "in_progress": in_progress,
+        "completed": completed,
+    })
