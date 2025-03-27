@@ -121,7 +121,7 @@ main {
     /* border: 1px solid #f0e68c; Slightly darker yellow for the border */
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Shadow for a lifted effect */
     border-radius: 5px; /* Rounded corners */
-    padding: 20px;
+    padding: 25px;
     font-family: 'Short Stack', cursive; /* Matches your existing font */
     font-size: 16px;
     color: #333; /* Dark text for readability */
