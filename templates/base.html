@@ -27,18 +27,14 @@
         <link rel="stylesheet" href="{% static 'css/doodlecss/doodle.css' %}">
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
     </head>
-
     <body>
-
         <!-- Navigation-->
-
-        <nav id="navbar" class="navbar navbar-expand-lg doodle shadow-sm">
-            <div class="container-fluid">
-                {% comment %} <a class="navbar-brand" href="{% url 'index' %}"> {% endcomment %}
-                    <img src="{% static 'images/check-list_17029836.png' %}" alt="ToodleDo logo" width="30" height="30">
-                    Toodledo
+        <nav id="navbar" class="navbar navbar-expand-lg doodle fixed-top m-1 p-0">
+            <div class="container-fluid doodle doodle-border">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img class="border-0" src="{% static 'images/check-list_17029836.png' %}" alt="ToodleDo logo" width="30" height="30">
+                    <span class="red-fg">To</span><span class="">oodle</span><span class="green-fg">Do</span>
                 </a>
                 <button class="navbar-toggler"
                         type="button"
@@ -100,19 +96,15 @@
             </div>
         </div>
 
-        <main class="flex-shrink-0 main-bg">
-            {% if user.is_authenticated %}
-            <p class="text-end m-3">You are logged in as {{ user }}</p>
-            {% else %}
-            <p class="text-end m-3">You are not logged in</p>
-            {% endif %} {% block content %}
-
+        <main class="flex-shrink-0 main-bg doodle">
+            {% block content %}
+                <!-- Content Goes here -->
             {% endblock content %}
         </main>
     
       <!-- Footer -->
-        <footer class="mt-auto text-center">
-            <div class="container p-4">
+        <footer class="mt-auto text-center doodle-border m-1 doodle">
+            <div class="container  p-4">
                 <h5 class="text-uppercase">Toodledo</h5>
                 <p>Effortlessly manage your tasks, set priorities, and achieve your goals with Toodledo.</p>
                 <div class="text-center p-3">&copy; 2025 Toodledo. All rights reserved.</div>

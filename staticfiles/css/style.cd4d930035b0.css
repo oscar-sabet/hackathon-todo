@@ -1,0 +1,14 @@
+
+:root {
+    --navbar-height: 56px;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    margin-top: --navbar-height;
+}
+main {
+    /* margin-top: --navbar-height; */
+    min-height: calc(100vh - --navbar-height);
+}
