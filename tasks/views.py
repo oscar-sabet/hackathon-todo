@@ -63,3 +63,7 @@ def board(request):
         "in_progress": in_progress,
         "completed": completed,
     })
+
+
+def index(request):
+    return render(request, 'tasks/index.html')
