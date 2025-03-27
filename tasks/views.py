@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 # Display the list of tasks
 def task_list(request):
     tasks = Task.objects.all()
-    return render(request, 'task_list.html', {'tasks': tasks})
+    return render(request, 'tasks/task_list.html', {'tasks': tasks})
 
 # Add a new task
 def add_task(request):
