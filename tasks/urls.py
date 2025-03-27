@@ -11,4 +11,5 @@ urlpatterns = [
         views.mark_completed,
         name="mark_completed",
     ),
+    path("index/", views.index, name="index"),
 ]

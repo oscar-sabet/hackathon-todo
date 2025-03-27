@@ -1,17 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Task
+from .forms import TaskForm
 
 
 # Display the list of tasks (filtered by user)
 @login_required
 def task_list(request):
     tasks = Task.objects.filter(user=request.user)  # Restrict to the logged-in user's tasks
-    return render(request, 'tasks/task_list.html', {'tasks': tasks})
-=======
-    form = TaskForm()
-    return render(request, 'tasks/task_list.html', {'form': form, 'tasks': tasks})
->>>>>>> origin/chez
+    form = TaskForm()  # Initialize the form for adding tasks
+    return render(
+        request,
+        'tasks/task_list.html',
+        {'form': form, 'tasks': tasks}
+    )
+
 
 # Add a new task (assign to the logged-in user)
 @login_required
