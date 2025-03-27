@@ -32,7 +32,7 @@ def delete_task(request, task_id):
     return redirect('task_list')
 
 
-@login_required
+# @login_required
 def board(request):
     """
     Renders a task board view, categorizing tasks by their status.
@@ -50,14 +50,14 @@ def board(request):
         HttpResponse: A rendered HTML page displaying tasks grouped by their
         status (Pending, In Progress, Completed).
     """
-    tasks = Task.objects.filter(user=request.user)
+    # tasks = Task.objects.filter(user=request.user)
     tasks = Task.objects.order_by("due_date")
 
     pending = tasks.filter(status="P")
     in_progress = tasks.filter(status="IP")
     completed = tasks.filter(status="C")
 
-    return render(request, "** insert template **", {
+    return render(request, "tasks/projectboard.html", {
         "tasks": tasks,  # May not be needed
         "pending": pending,
         "in_progress": in_progress,
