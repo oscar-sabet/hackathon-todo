@@ -49,7 +49,7 @@
   border-image: url(button.svg) 10 10 10 10 stretch stretch;
 }
 
-.doodle button, .doodle input, .doodle select, .doodle input[type="file"]::file-selector-button {
+.doodle button, .doodle input, .doodle select, .doodle input[type="file"]::file-selector-button, #editbtn {
   border-style: solid;
   border-width: 10px 10px 10px 10px;
   border-image: url(button.svg) 10 10 10 10 stretch stretch;
@@ -121,7 +121,7 @@
   padding: 0px;
 }
 
-.doodle button, .doodle textarea, .doodle input, .doodle select {
+.doodle button, .doodle textarea, .doodle input, .doodle select, #editbtn {
   background-color: unset;
   font-family: 'Short Stack', cursive;
   font-size: 1em;
