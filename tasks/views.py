@@ -39,6 +39,35 @@ def add_task(request):
         return redirect('task_list')
     return render(request, 'tasks/add_task.html')  # Correct template path
 
+# Edit an existing task (only if the user owns the task)
+@login_required
+def edit_task(request, task_id):
+    task = get_object_or_404(Task, id=task_id, user=request.user)  # Ensure task belongs to the user
+
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)  # Bind the form with task data
+        if form.is_valid():
+            form.save()  # Save the updated task details
+            return redirect('task_list')  # Redirect to the task list view
+    else:
+        form = TaskForm(instance=task)  # Pre-fill the form with current task data
+
+    return render(request, 'tasks/edit_task.html', {'form': form, 'task': task})  # Render the edit form
+
+# Change the status of a task (only if the user owns the task)
+@login_required
+def change_status(request, task_id):
+    task = get_object_or_404(Task, id=task_id, user=request.user)  # Ensure task belongs to the user
+
+    if request.method == 'POST':
+        new_status = request.POST.get('status')  # Get the new status from the form
+        if new_status in ['pending', 'in_progress', 'completed']:  # Validate status
+            task.status = new_status  # Update the task's status
+            task.save()  # Save changes
+        return redirect('task_list')  # Redirect to the task list view
+
+    return render(request, 'tasks/change_status.html', {'task': task})  # Render the status change form
+
 
 # Mark a task as completed (only if the user owns the task)
 @login_required
