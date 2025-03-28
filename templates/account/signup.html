@@ -5,17 +5,58 @@
 {% block head_title %}{% trans "Signup" %}{% endblock head_title %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+<h1 class="blue-fg">{% trans "Sign Up" %}</h1>
 
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+<form class="signup row text-center text-md-start" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  
+  <!-- Username Field -->
+  <div class="mb-3 col-12 col-md-6">
+    <label for="id_username" class="form-label">{% trans "Username" %}</label><br>
+    {{ form.username }}
+  </div>
+  
+  <!-- Email Field -->
+  <div class="mb-3 col-12 col-md-6">
+    <label for="id_email" class="form-label">{% trans "Email Address" %}</label><br>
+    {{ form.email }}
+  </div>
+  
+  <!-- Password1 Field -->
+  <div class="mb-3 col-12 col-md-6">
+    <label for="id_password1" class="form-label">{% trans "Password" %}</label><br>
+    {{ form.password1 }}
+  </div>
+  
+  <!-- Password2 Field -->
+  <div class="mb-3 col-12 col-md-6">
+    <label for="id_password2" class="form-label">{% trans "Confirm Password" %}</label><br>
+    {{ form.password2 }}
+  </div>
+  
+  <!-- Redirect Field (Hidden) -->
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  
+  <!-- Submit Button -->
+  <button class="btn btn-primary" type="submit">{% trans "Sign Up" %}</button>
+</form>
+  
+
+{% comment %} <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
   {{ form.as_p }}
+  {{ form.username }}
+  {{ form.email }}
+  {{ form.password1 }}
+  {{ form.password2 }}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+</form> {% endcomment %}
 
 {% endblock content %}
