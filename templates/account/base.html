@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 {% load i18n %}
 <!DOCTYPE html>
 <html>
@@ -85,9 +86,9 @@
     {% endif %}
 
     <div class="container-flex doodle align-content-center vh-100">
-      <div class="row d-flex justify-content-center">
-        <div class="col-12 col-lg-6 doodle-border">
-    <div>
+      <div class="row d-flex justify-content-center m-2">
+        <div class="col-12 col-lg-6 doodle-border p-4">
+    {% comment %} <div>
       <strong>{% trans "Menu:" %}</strong>
       <ul>
         {% if user.is_authenticated %}
@@ -98,13 +99,20 @@
         <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
         {% endif %}
       </ul>
-    </div>
+    </div> {% endcomment %}
     
     {% block content %}
     {% endblock content %}
         </div>
       </div>
     </div>
+    <footer class="mt-auto text-center doodle-border m-1 doodle">
+      <div class="container  p-4">
+          <h5 class="text-uppercase">Toodledo</h5>
+          <p>Effortlessly manage your tasks, set priorities, and achieve your goals with Toodledo.</p>
+          <div class="text-center p-3">&copy; 2025 Toodledo. All rights reserved.</div>
+      </div>
+  </footer>
     {% endblock body %}
     {% block extra_body %}
     {% endblock extra_body %}
