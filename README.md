@@ -1,7 +1,10 @@
-# Django To-Do List Application
+# ToodleDo: A Django To-Do List Application
 
 ## Description
-This is a Django-based web application designed to help users manage their tasks effectively. The app allows users to create, read, update, and delete tasks, with additional functionality for filtering tasks by user, setting the priority of the task, and updating the individual task's status, e.g., marking tasks as completed.
+ToodleDo is a Django-based web application designed to help users manage their tasks effectively. The app allows users to create, read, update, and delete tasks, with additional functionality for filtering tasks by user, setting the priority of the task, and updating the individual task's status, e.g., marking tasks as completed.
+
+![ToodleDo landing page](https://github.com/user-attachments/assets/ac884078-e2b4-4b95-bf60-75d3d6da0c09)
+
 
 ## Features
 - **User Authentication:** Secure login/logout functionality.
