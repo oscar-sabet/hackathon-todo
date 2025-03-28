@@ -8,10 +8,17 @@ from django.utils import timezone
 # Create your models here.
 class Task(models.Model):
     STATUS_CHOICES = [
-        ("P", "Pending"),
-        ("IP", "In Progress"),
-        ("C", "Completed"),
+        ('pending', 'Pending'),
+        ('in_progress', 'In Progress'),
+        ('completed', 'Completed'),
     ]
+
+    title = models.CharField(max_length=255)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title  # Ensure this line is indented properly
 
     PRIORITY_CHOICES = [
         ("L", "Low"),
@@ -26,15 +33,15 @@ class Task(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     due_date = models.DateTimeField(blank=True, null=True)
     completed_date = models.DateTimeField(blank=True, null=True)
     status = models.CharField(
-        max_length=2,
+        max_length=20,
         choices=STATUS_CHOICES,
-        default="P"
+        default='pending'
         )
     priority = models.CharField(
         max_length=1,
@@ -46,3 +53,6 @@ class Task(models.Model):
         choices=CATEGORY_CHOICES,
         default="P"
         )
+
+    def __str__(self):
+        return self.title

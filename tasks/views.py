@@ -3,41 +3,40 @@ from django.contrib.auth.decorators import login_required
 from .models import Task
 from django.utils.timezone import now
 from .forms import TaskForm
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 
 # Display the list of tasks (filtered by user)
 @login_required
 def task_list(request):
-    tasks = Task.objects.filter(user=request.user)  # Restrict to the logged-in user's tasks
-    # return render(request, 'tasks/task_list.html', {'tasks': tasks})
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.user = request.user
+            task.status = 'pending'  # Default status for new tasks
+            task.save()
+            return redirect('task_list')
 
+    tasks = Task.objects.filter(user=request.user)
     form = TaskForm()
     return render(request, 'tasks/task_list.html', {'form': form, 'tasks': tasks})
 
 
 # Add a new task (assign to the logged-in user)
+@csrf_exempt
 @login_required
 def add_task(request):
     if request.method == 'POST':
-        task_title = request.POST.get('title')
-        task_description = request.POST.get('description')  # Capture description
-        task_due_date = request.POST.get('due_date')  # Capture due date
-        task_priority = request.POST.get('priority')  # Capture priority
-        task_category = request.POST.get('category')  # Capture category
-
-        if task_title:  # Ensure title is provided
-            Task.objects.create(
-                title=task_title,
-                description=task_description,
-                due_date=task_due_date if task_due_date else None,
-                priority=task_priority if task_priority else "M",  # Default to Medium
-                category=task_category if task_category else "P",  # Default to Personal
-                user=request.user,
-                created=now()  # Automatically set the current time
-            )
-        return redirect('task_list')
-    return render(request, 'tasks/add_task.html')  # Correct template path
+        data = json.loads(request.body)
+        title = data.get('title', 'New Task')
+        status = data.get('status', 'pending')
+        task = Task.objects.create(title=title, status=status, user=request.user)
+        return JsonResponse({'success': True, 'task_id': task.id})
+    return JsonResponse({'success': False}, status=400)
 
 
 # Mark a task as completed (only if the user owns the task)
@@ -66,34 +65,20 @@ def board(request):
         'in_progress_tasks': in_progress_tasks,
         'completed_tasks': completed_tasks,
     })
-    """
-    Renders a task board view, categorizing tasks by their status.
-
-    This view retrieves all tasks from the database, orders them based on
-    a query parameter, and filters them into three categories: Pending,
-    In Progress, and Completed. The categorized tasks are then passed to the
-    template for rendering.
-
-    Args:
-        request (HttpRequest): The HTTP request object containing metadata
-        about the request, including GET parameters.
-
-    Returns:
-        HttpResponse: A rendered HTML page displaying tasks grouped by their
-        status (Pending, In Progress, Completed).
-    """
-    # tasks = Task.objects.filter(user=request.user)
-    tasks = Task.objects.filter(user=request.user).order_by('due_date')  # Restrict tasks to the logged-in user
-    pending = tasks.filter(status="P")
-    in_progress = tasks.filter(status="IP")
-    completed = tasks.filter(status="C")
-
-    return render(request, "tasks/projectboard.html", {
-        "pending": pending,
-        "in_progress": in_progress,
-        "completed": completed,
-    })
 
 
 def home(request):
     return render(request, 'tasks/home.html')
+
+
+@csrf_exempt
+@login_required
+def update_task_status(request, task_id):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        new_status = data.get('status')
+        task = get_object_or_404(Task, id=task_id, user=request.user)
+        task.status = new_status
+        task.save()
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False}, status=400)

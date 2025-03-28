@@ -4,39 +4,45 @@
 {% block content %}
 
 <div class="kanban-board">
+    <!-- Pending Tasks -->
     <div class="kanban-column">
         <h2>Pending</h2>
-        <div class="post-it-container" id="pending-tasks">
+        <div class="post-it-container" id="pending">
             {% for task in pending_tasks %}
-            <div class="post-it" data-task-id="{{ task.id }}">
+            <div class="post-it" data-task-id="{{ task.id }}" draggable="true">
                 <p contenteditable="true" class="editable-task">{{ task.title }}</p>
             </div>
             {% endfor %}
         </div>
-        <button class="add-task-btn" data-status="pending">Add Task</button>
     </div>
+
+    <!-- In Progress Tasks -->
     <div class="kanban-column">
         <h2>In Progress</h2>
-        <div class="post-it-container" id="in-progress-tasks">
+        <div class="post-it-container" id="in_progress">
             {% for task in in_progress_tasks %}
-            <div class="post-it" data-task-id="{{ task.id }}">
+            <div class="post-it" data-task-id="{{ task.id }}" draggable="true">
                 <p contenteditable="true" class="editable-task">{{ task.title }}</p>
             </div>
             {% endfor %}
         </div>
-        <button class="add-task-btn" data-status="in_progress">Add Task</button>
     </div>
+
+    <!-- Completed Tasks -->
     <div class="kanban-column">
         <h2>Completed</h2>
-        <div class="post-it-container" id="completed-tasks">
+        <div class="post-it-container" id="completed">
             {% for task in completed_tasks %}
-            <div class="post-it" data-task></div>
-            <p contenteditable="true" class="editable-task">{{ task.title }}</p>
+            <div class="post-it" data-task-id="{{ task.id }}" draggable="true">
+                <p contenteditable="true" class="editable-task">{{ task.title }}</p>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-    <button class="add-task-btn" data-status="completed">Add Task</button>
 </div>
+
+        <!-- Removed the "Add Task" button -->
+    </div>
 </div>
 
         <style>
@@ -88,45 +94,59 @@
         }
     </style>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Handle adding new tasks
-            document.querySelectorAll('.add-task-btn').forEach(button => {
-                button.addEventListener('click', () => {
-                    const status = button.getAttribute('data-status');
-                    const container = document.getElementById(`${status}-tasks`);
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const containers = document.querySelectorAll('.post-it-container');
 
-                    // Create a new post-it element
-                    const newPostIt = document.createElement('div');
-                    newPostIt.classList.add('post-it');
-                    newPostIt.setAttribute('contenteditable', 'true');
-                    newPostIt.innerHTML = '<p contenteditable="true" class="editable-task">New Task</p>';
-                    container.appendChild(newPostIt);
+        let draggedTask = null;
 
-                    // Save the new task to the server
-                    fetch('/add-task/', {
+        // Add dragstart and dragend event listeners to tasks
+        document.querySelectorAll('.post-it').forEach(task => {
+            task.addEventListener('dragstart', (e) => {
+                draggedTask = task;
+                setTimeout(() => task.classList.add('hidden'), 0); // Hide the task while dragging
+            });
+
+            task.addEventListener('dragend', () => {
+                draggedTask.classList.remove('hidden');
+                draggedTask = null;
+            });
+        });
+
+        // Add dragover and drop event listeners to containers
+        containers.forEach(container => {
+            container.addEventListener('dragover', (e) => {
+                e.preventDefault(); // Allow dropping
+            });
+
+            container.addEventListener('drop', (e) => {
+                e.preventDefault();
+                if (draggedTask) {
+                    container.appendChild(draggedTask);
+
+                    // Update the task's status in the database
+                    const taskId = draggedTask.dataset.taskId;
+                    const newStatus = container.id;
+
+                    fetch(`/update-task-status/${taskId}/`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                             'X-CSRFToken': '{{ csrf_token }}',
                         },
-                        body: JSON.stringify({
-                            title: 'New Task',
-                            status: status,
-                        }),
+                        body: JSON.stringify({ status: newStatus }),
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Update the task ID for the new task
-                            newPostIt.setAttribute('data-task-id', data.task_id);
+                    .then(response => {
+                        if (response.ok) {
+                            // Reload the page after the update
+                            window.location.reload();
                         } else {
-                            alert('Failed to add task.');
-                            newPostIt.remove(); // Remove the task if saving fails
+                            alert('Failed to update task status.');
                         }
                     });
-                });
+                }
             });
         });
-    </script>
+    });
+</script>
     {% endblock content %}
