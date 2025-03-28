@@ -73,9 +73,12 @@ def change_status(request, task_id):
 @login_required
 def mark_completed(request, task_id):
     task = get_object_or_404(Task, id=task_id, user=request.user)  # Ensure task belongs to the user
-    task.completed = True
-    task.save()
-    return redirect('task_list')
+    if request.method == 'POST':
+        new_status = request.POST.get('status')  # Get the status from the form
+        if new_status in ['Pending', 'Completed']:  # Validate the status
+            task.status = new_status  # Update the task's status
+            task.save()  # Save the changes
+    return redirect('task_list')  # Redirect to the task list view
 
 
 # Delete a task (only if the user owns the task)

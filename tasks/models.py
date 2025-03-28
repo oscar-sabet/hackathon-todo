@@ -32,7 +32,7 @@ class Task(models.Model):
     due_date = models.DateTimeField(blank=True, null=True)
     completed_date = models.DateTimeField(blank=True, null=True)
     status = models.CharField(
-        max_length=2,
+        max_length=20,
         choices=STATUS_CHOICES,
         default="P"
         )
