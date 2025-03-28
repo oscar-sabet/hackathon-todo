@@ -154,6 +154,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # allauth settings
 SITE_ID = 1
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
 # Static files (CSS, JavaScript, images)
 STATIC_URL = "/static/"

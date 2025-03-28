@@ -34,7 +34,7 @@
             <div class="container-fluid doodle doodle-border">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img class="border-0" src="{% static 'images/check-list_17029836.png' %}" alt="ToodleDo logo" width="30" height="30">
-                    <span class="red-fg">To</span><span class="">oodle</span><span class="green-fg">Do</span>
+                    <span class="xred-fg">To</span><span class="">oodle</span><span class="xgreen-fg">Do</span>
                 </a>
                 <button class="navbar-toggler"
                         type="button"
@@ -62,10 +62,10 @@
                     </ul>
                     <span class="navbar-text text-muted">
                         {% if user.is_authenticated %}
-                            <a href="">Logout {{ user.username }} <i class="fa-solid fa-user"></i></a>
+                            <a href="{% url 'account_logout' %}">Logout {{ user.username }} <i class="fa-solid fa-user"></i></a>
                         {% else %}
-                            <a href="">Login</a>
-                            <a href="">Register</a>
+                            <a href="{% url 'account_login' %}">Login</a>
+                            <a href="{% url 'account_signup' %}">Register</a>
                         {% endif %}
                     </span>
                 </div>

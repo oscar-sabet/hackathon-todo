@@ -129,18 +129,18 @@ main {
     /* margin: 20px; */
     transform: rotate(-1deg); /* Slight rotation for a casual look */
 }
-.sticky-note:nth-child(1n) {
-    transform: rotate(-1.5deg); /* Opposite rotation for variety */
+.sticky-note:nth-child(even) {
+    transform: rotate(-1.5deg); 
 }
-.sticky-note:nth-child(2n) {
-    transform: rotate(1.5deg); /* Opposite rotation for variety */
+.sticky-note:nth-child(odd) {
+    transform: rotate(1.5deg);
 }
-.sticky-note:nth-child(3n) {
-    transform: rotate(-1.5deg); /* Opposite rotation for variety */
+/* .sticky-note:nth-child(3n) {
+    transform: rotate(-1.5deg); 
 }
 .sticky-note:nth-child(4n) {
-    transform: rotate(2deg); /* Opposite rotation for variety */
-}
+    transform: rotate(2deg); 
+} */
 /* Add a pin effect */
 .sticky-note::before {
     content: '';
