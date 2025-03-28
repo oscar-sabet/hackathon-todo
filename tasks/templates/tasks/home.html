@@ -14,8 +14,8 @@
             Whether you're planning your day, tracking your goals, or just jotting down ideas, 
             DoodleTo makes it easy and enjoyable with its playful doodle-themed design.
           </p>
-        <a href="about.html" class="btn doodle-border xbtn-lg">Sign In</a>
-        <a href="about.html" class="btn doodle-border xbtn-lg">Register</a>
+        <a href="{% url 'account_login' %}" class="btn doodle-border xbtn-lg">Sign In</a>
+        <a href="{% url 'account_signup' %}" class="btn doodle-border xbtn-lg">Register</a>
       </div>
       <div class="col-12 col-lg-6 text-center text-lg-start align-content-center">
         <img src="{% static 'images/toodledo-2.png' %}" alt="Doodle" class="img-fluid border-0" height="400" width="400">
