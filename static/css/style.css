@@ -9,6 +9,7 @@ body {
     --red: #eb3a3a;
     --green: #2ed32e;
     --blue: #0000ff;
+    --yellow: #9c9c35;
 
     --pastel-red: #f99;
     --pastel-blue: #99f;
@@ -24,6 +25,9 @@ body {
 }
 .blue-fg {
     color: var(--blue) !important;
+}
+.yellow-fg {
+    color: var(--yellow) !important;
 }
 .pastel-red-bg {
     background-color: var(--pastel-red) !important;
