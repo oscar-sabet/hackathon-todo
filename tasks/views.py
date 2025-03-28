@@ -1,39 +1,71 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .models import Task
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from .models import Task
+from django.utils.timezone import now
+from .forms import TaskForm
 
 
-# Display the list of tasks
+
+# Display the list of tasks (filtered by user)
+@login_required
 def task_list(request):
-    tasks = Task.objects.all()
-    return render(request, 'task_list.html', {'tasks': tasks})
+    tasks = Task.objects.filter(user=request.user)  # Restrict to the logged-in user's tasks
+    # return render(request, 'tasks/task_list.html', {'tasks': tasks})
 
-# Add a new task
+    form = TaskForm()
+    return render(request, 'tasks/task_list.html', {'form': form, 'tasks': tasks})
+
+
+# Add a new task (assign to the logged-in user)
+@login_required
 def add_task(request):
     if request.method == 'POST':
         task_title = request.POST.get('title')
-        if task_title:
-            Task.objects.create(title=task_title)
-        return redirect('task_list')
-    return render(request, 'add_task.html')
+        task_description = request.POST.get('description')  # Capture description
+        task_due_date = request.POST.get('due_date')  # Capture due date
+        task_priority = request.POST.get('priority')  # Capture priority
+        task_category = request.POST.get('category')  # Capture category
 
-# Mark a task as completed
+        if task_title:  # Ensure title is provided
+            Task.objects.create(
+                title=task_title,
+                description=task_description,
+                due_date=task_due_date if task_due_date else None,
+                priority=task_priority if task_priority else "M",  # Default to Medium
+                category=task_category if task_category else "P",  # Default to Personal
+                user=request.user,
+                created=now()  # Automatically set the current time
+            )
+        return redirect('task_list')
+    return render(request, 'tasks/add_task.html')  # Correct template path
+
+
+# Mark a task as completed (only if the user owns the task)
+@login_required
 def mark_completed(request, task_id):
-    task = Task.objects.get(id=task_id)
+    task = get_object_or_404(Task, id=task_id, user=request.user)  # Ensure task belongs to the user
     task.completed = True
     task.save()
     return redirect('task_list')
 
-# Delete a task
+
+# Delete a task (only if the user owns the task)
+@login_required
 def delete_task(request, task_id):
-    task = Task.objects.get(id=task_id)
+    task = get_object_or_404(Task, id=task_id, user=request.user)  # Ensure task belongs to the user
     task.delete()
     return redirect('task_list')
 
-
 @login_required
 def board(request):
+    pending_tasks = Task.objects.filter(user=request.user, status='pending')
+    in_progress_tasks = Task.objects.filter(user=request.user, status='in_progress')
+    completed_tasks = Task.objects.filter(user=request.user, status='completed')
+    return render(request, 'tasks/projectboard.html', {
+        'pending_tasks': pending_tasks,
+        'in_progress_tasks': in_progress_tasks,
+        'completed_tasks': completed_tasks,
+    })
     """
     Renders a task board view, categorizing tasks by their status.
 
@@ -50,16 +82,18 @@ def board(request):
         HttpResponse: A rendered HTML page displaying tasks grouped by their
         status (Pending, In Progress, Completed).
     """
-    tasks = Task.objects.filter(user=request.user)
-    tasks = Task.objects.order_by("due_date")
-
+    # tasks = Task.objects.filter(user=request.user)
+    tasks = Task.objects.filter(user=request.user).order_by('due_date')  # Restrict tasks to the logged-in user
     pending = tasks.filter(status="P")
     in_progress = tasks.filter(status="IP")
     completed = tasks.filter(status="C")
 
-    return render(request, "** insert template **", {
-        "tasks": tasks,  # May not be needed
+    return render(request, "tasks/projectboard.html", {
         "pending": pending,
         "in_progress": in_progress,
         "completed": completed,
     })
+
+
+def home(request):
+    return render(request, 'tasks/home.html')

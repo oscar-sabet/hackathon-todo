@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ToodleDo - Home{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-5">
+    <section class="row align-content-center">
+      <div class="col-12 col-lg-6 text-center text-lg-end align-content-center">
+        <h1 class="blue-fg display-2">ToodleDo</h1>
+          <h3 class="green-fg display-6">Organize Your Life, One Doodle at a Time</h3>
+          <p>
+            Welcome to DoodleTo, the fun and creative way to manage your tasks! 
+            Whether you're planning your day, tracking your goals, or just jotting down ideas, 
+            DoodleTo makes it easy and enjoyable with its playful doodle-themed design.
+          </p>
+        <a href="{% url 'account_login' %}" class="btn doodle-border xbtn-lg">Sign In</a>
+        <a href="{% url 'account_signup' %}" class="btn doodle-border xbtn-lg">Register</a>
+      </div>
+      <div class="col-12 col-lg-6 text-center text-lg-start align-content-center">
+        <img src="{% static 'images/toodledo-2.png' %}" alt="Doodle" class="img-fluid border-0" height="400" width="400">
+        
+    </div>
+  </section>
+
+  <section class="row justify-content-between">
+    <div class="text-center my-5">
+        <h2 class="display-4">Why Choose ToodleDo?</h2>
+        <p class="lead">
+            Discover the features and benefits that make ToodleDo the perfect tool to organize your life. 
+            From intuitive task management to playful design, we’ve got everything you need to stay on track and stress-free.
+        </p>
+    </div>
+    <div class="sticky-note m-1 col-lg-4">
+        <h3>On the Go</h3>
+        <p>Access your tasks anytime, anywhere with our mobile-friendly design.</p>
+    </div>
+    
+    <div class="sticky-note col-lg-4 pastel-blue-bg">
+        <h3>User-Friendly</h3>
+        <p>Enjoy a playful and creative design that makes task management fun!</p>
+    </div>
+    <div class="sticky-note col-lg-4 pastel-red-bg">
+        <h3 class="">Reminder</h3>
+        <p>Don't forget to complete your tasks!</p>
+    </div>
+    
+    <div class="sticky-note col-lg-4 pastel-green-bg">
+        <h3 class="">Stay Organized</h3>
+        <p>Track your progress, meet deadlines, and reduce stress effortlessly.</p>
+    </div>
+</section>
+
+  <section class="row">
+    <div class="col-12 text-center my-5">
+        <h2 class="display-4">Access ToodleDo Anywhere</h2>
+        <p class="lead">
+            Whether you're at home, at work, or on the go, ToodleDo is always with you. 
+            Our mobile-friendly design ensures you can manage your tasks from any device, 
+            anytime, anywhere. Stay productive and organized no matter where life takes you.
+        </p>
+        <img src="{% static 'images/toodledo-1-1.png' %}" alt="Doodle" class="img-fluid border-0 w-100" >
+</section>
+
+<section id="benefits" class="xbg-3 d-flex align-items-center">
+    <div class="container text-center">
+        <h2 class="mb-4 display-4">What Our Users Say?</h2>
+        <div class="row align-items-end">
+            <div class="col-lg-4 ">
+                <img src="{% static 'images/toodledo-3.png' %}" alt="Doodle" class="img-fluid border-0 xw-100" >
+                <p class="">"ToodleDo has  transformed the way I manage my tasks. The playful design keeps me motivated, and I’ve never been more productive!"</p>
+                <h5>- Sarah J., Freelance Designer</h5>
+            </div>
+            <div class="col-lg-4 ">
+                <img src="{% static 'images/toodledo-4.png' %}" alt="Doodle" class="img-fluid border-0 xw-100" >
+                <p class="">"I love how simple and intuitive ToodleDo is. I can organize my day in minutes, and the sticky notes feature is a game-changer!"</p>
+                <h5>- Mark T., Software Engineer</h5>
+            </div>
+            <div class="col-lg-4 ">
+                <img src="{% static 'images/toodledo-5.png' %}" alt="Doodle" class="img-fluid border-0 xw-100" >
+                <p class="">"Whether I’m at work or on the go, ToodleDo is always there to keep me on track. It’s the perfect tool for staying organized!"</p>
+                <h5>- Emily R., Project Manager</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+  {% comment %} <div id="notebook-paper">
+    <header>
+      <h1>Task List</h1>
+    </header>
+    <div id="content">
+      <div class="hipsum">
+        <ul>
+            <li class="row">
+                <div class="col">Task 1</div>
+                <div class="col">Due: 2 days, 5 hours, 34 minutes</div>
+                <div class="col">
+                    <input class="form-check-input" type="checkbox" value="" id="dummyCheckbox">
+                    <label class="form-check-label" for="dummyCheckbox">
+                        Complete
+                    </label>
+                </div>
+
+                <p></p>
+            </li>
+            <li class="row">
+                <div class="col">Task 1</div>
+                <div class="col">Due: 2 days, 5 hours, 34 minutes</div>
+                <div class="col">
+                    <input class="form-check-input" type="checkbox" value="" id="dummyCheckbox">
+                    <label class="form-check-label" for="dummyCheckbox">
+                        Complete
+                    </label>
+                </div>
+                
+            </li>
+            <li>Task 2</li>
+            <li>Task 3</li>
+            <li>Task 4 </li>
+        </ul>
+        <p>Intelligentsia lo-fi pug Austin.  Shabby chic asymmetrical jean shorts, twee stumptown bespoke art party keffiyeh High Life PBR 90's mumblecore.  Meggings Echo Park narwhal you probably haven't heard of them, viral locavore Pinterest keytar.  Master cleanse Neutra Marfa cornhole roof party, seitan ennui Kickstarter fingerstache.  Ethical tofu retro, paleo pork belly hashtag deep v flexitarian meh High Life Godard occupy lo-fi.  Hella pour-over Williamsburg post-ironic narwhal Kickstarter, tofu single-origin coffee vinyl irony cray jean shorts.  Cray banjo Thundercats, asymmetrical pickled paleo butcher cliche disrupt Odd Future photo booth.</p><p>Forage selfies Shoreditch farm-to-table swag.  YOLO Vice organic, Brooklyn meggings banh mi art party.  Occupy flexitarian freegan mustache shabby chic hoodie normcore.  Vinyl chia gastropub, asymmetrical fingerstache sartorial ennui aesthetic hella farm-to-table Blue Bottle.  Raw denim cliche semiotics, letterpress bicycle rights cornhole art party YOLO yr Shoreditch leggings brunch fap crucifix.  Gentrify mustache leggings ethnic roof party, shabby chic viral Wes Anderson 3 wolf moon Tonx ugh sustainable photo booth master cleanse meggings.  Shoreditch before they sold out direct trade  hoodie, leggings Portland artisan art party.</p><p>VHS jean shorts Neutra gastropub cornhole, mumblecore Wes Anderson typewriter Godard bitters 3 wolf moon Odd Future tofu tousled plaid.  Tonx Etsy tofu, distillery retro blog Blue Bottle ugh kale chips flexitarian Odd Future sartorial Banksy bitters.  Messenger bag XOXO sustainable viral semiotics Williamsburg, whatever gastropub hashtag master cleanse.  Fap Williamsburg Blue Bottle, yr flannel biodiesel XOXO YOLO freegan pour-over farm-to-table leggings.  Ethical Thundercats umami gluten-free fingerstache.  DIY Etsy disrupt PBR.  Shabby chic sriracha synth Pinterest Marfa aesthetic dreamcatcher salvia, trust fund cliche Brooklyn.</p><p>Master cleanse Neutra Marfa cornhole roof party, seitan ennui Kickstarter fingerstache.  Ethical tofu retro, paleo.</p>
+    </div>
+  </div> {% endcomment %}
+
+{% endblock %}

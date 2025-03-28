@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="icon.png"/>
+  <meta name="apple-mobile-web-app-title">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DoodleCSS</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Short+Stack&display=swap');
+
+    body {
+      max-width: 800px;
+      margin: auto;
+      padding: 1em;
+      font-family: 'Short Stack', cursive;
+      font-size: 2em;
+    }
+
+    @media only screen and (max-width: 600px) {
+      body {
+        font-size: 1.25em;
+      }
+    }
+    
+    h2 {
+      margin-top: 2em;
+    }
+  </style>
+  <link rel="stylesheet" href="doodle.css"/>
+
+  <!-- social -->
+  <meta content="https://chr15m.github.io/DoodleCSS/screenshot.png" name="twitter:image:src">
+  <meta content="@mccrmx" name="twitter:site">
+  <meta content="@mccrmx" name="twitter:creator">
+  <meta content="summary" name="twitter:card">
+  <meta content="Doodle CSS" name="twitter:title">
+  <meta content="A simple hand drawn HTML/CSS theme." name="twitter:description">
+
+  <meta content="https://chr15m.github.io/DoodleCSS/screenshot.png" property="og:image">
+  <meta content="Doodle CSS" property="og:site_name">
+  <meta content="website" property="og:type">
+  <meta content="Doodle CSS" property="og:title">
+  <meta content="https://chr15m.github.io/DoodleCSS/" property="og:url">
+  <meta content="A simple hand drawn HTML/CSS theme." property="og:description">
+
+</head>
+<body class="doodle">
+
+  <main>
+  <img src="star.svg" style="border: none; width: 64px;"/>
+  <h1>Doodle CSS</h1>
+  <img src="figure.svg" style="border: none; margin: 1em; margin-right: 0px; float: right;"/>
+  <p>A simple hand drawn HTML/CSS theme.</p>
+  <p>By <a href="https://mccormick.cx">Chris McCormick</a> (<a href="https://twitter.com/mccrmx">@mccrmx</a>)</p>
+  <p>Get the <a href="https://github.com/chr15m/DoodleCSS">source code on GitHub</a>.</p>
+
+  <h2>Support</h2>
+
+  <div style="text-align: center;">
+    <a href="https://ko-fi.com/chr15m" class="button"><button style="background-color: #FF5E5B; border-radius: 8px; font-size: 0.5em; color: white; display: inline-flex; align-items: center; cursor: pointer;">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="1em" viewBox="0 100 512 312" xml:space="preserve" style="margin-right: 0.5em;"><g><path d="M509.5,190.9c-16.5-87.2-103.7-98-103.7-98H15.4c-12.9,0-14.5,17-14.5,17s-1.7,156.3-0.4,252.3c3.5,51.6,55.2,57,55.2,57   s176.3-0.5,255.2-1.1c52-9.1,57.3-54.8,56.7-79.7C460.5,343.5,525.9,278,509.5,190.9L509.5,190.9z M273.5,265.8   c-26.6,30.9-85.6,84.8-85.6,84.8s-2.6,2.6-6.7,0.5c-1.6-1.2-2.2-1.9-2.2-1.9c-9.5-9.4-71.8-65-86.1-84.3   c-15.1-20.6-22.2-57.6-1.9-79.2c20.2-21.5,64.1-23.2,93.1,8.7c0,0,33.3-38,74-20.5C298.6,191.3,297.2,238,273.5,265.8z M405.2,276   c-19.8,2.5-35.9,0.6-35.9,0.6V155.4H407c0,0,42.1,11.8,42.1,56.3C449.1,252.5,428.1,268.6,405.2,276L405.2,276z" fill="white"/></g></svg>
+        Support on Ko-fi
+    </button></a>
+    <a href="https://patreon.com/chr15m" class="button"><button style="background-color: #FF5E5B; border-radius: 8px; font-size: 0.5em; color: white; display: inline-flex; align-items: center; cursor: pointer;">
+        <svg width="1em" height="1em" style="margin-right: 0.5em;" version="1.1" viewBox="0 0 569 546" xmlns="http://www.w3.org/2000/svg"><title>Patreon logo</title><g fill="white"><circle cx="362.589996" cy="204.589996" data-fill="1" r="204.589996"></circle><rect data-fill="1" height="545.799988" width="100" x="0" y="0"></rect></g></svg>
+        Support on Patreon
+    </button></a>
+    <a href="https://github.com/sponsors/chr15m" class="button"><button style="background-color: #3C3C3C; color: white; border-radius: 8px; font-size: 0.5em; display: inline-flex; align-items: center; cursor: pointer;">
+      <svg width="1em" height="1em" viewBox="0 0 1536 1498.4706" xmlns="http://www.w3.org/2000/svg" style="margin-right: 0.5em;"><path d="m768 0q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 0.5-76.5t0.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 0.5 88.5t0.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z" fill="white"/></svg>
+        Sponsor on GitHub
+    </button></a>
+  </div>
+
+  <h2>Quick demo</h2>
+
+  <fieldset>
+    <legend>Some inputs</legend>
+
+    <p>
+    <label for="example-input-text">An input</label><br/>
+      <input id="example-input-text" type="text" placeholder="Enter some text here">
+    </p>
+
+    <p>
+      <label for="example-input-password">A password field</label></br>
+      <input id="example-input-password" type="password" placeholder="Password">
+    </p>
+
+    <p>
+      <label for="example-textarea">A textarea</label><br/>
+      <textarea id="example-textarea" rows="3"></textarea>
+    </p>
+
+    <p>
+      <label for="example-select1">A select input</label>
+      <select id="example-select1">
+        <option>one</option>
+        <option>two</option>
+        <option>three</option>
+        <option>seventeen</option>
+      </select>
+    </p>
+ 
+    <p>
+      <div>
+        <label>
+          <input id="optionsR-radios1" type="radio" name="options-radios" value="option1" checked="">
+          Option one.
+        </label>
+      </div>
+
+      <div>
+        <label>
+          <input id="options-radios2" type="radio" name="options-radios" value="option2">
+          Option two.
+        </label>
+      </div>
+    </p>
+
+    <p>
+      <div>
+        <label>
+          <input type="checkbox" id="ch1">
+          Checkbox one.
+        </label>
+      </div>
+
+      <div>
+        <label>
+          <input type="checkbox" id="ch2">
+          Checkbox two.
+        </label>
+      </div>
+    </p>
+
+    <p>
+      <button type="button" name="button">A button</button>
+    </p>
+  </fieldset>
+
+  <h2>How to use it</h2>
+  <p>The main stylesheet is <code>doodle.css</code>:</p>
+  <pre>
+&lt;link rel="stylesheet" href="doodle.css"&gt;
+  </pre>
+  <p>Then add the class <code>doodle</code> to the top level element you want to apply the theme to:</p>
+  <pre>
+&lt;body class="doodle"&gt;...&lt;body&gt;
+  </pre>
+  <p>Load the Short Stack web font:</p>
+  <pre style="white-space: pre-wrap;">
+&lt;style&gt;
+@import url('https://fonts.googleapis.com/css2?family=Short+Stack&display=swap');
+body {
+  font-family: 'Short Stack', cursive;
+}
+&lt;/style&gt;
+  </pre>
+  <p>There's also an npm installable version:</p>
+  <pre>
+npm install doodle.css
+  </pre>
+  <p>There are also a bunch of other vectors you can use in <a href="./doodles.svg">doodles.svg</a>.</p>
+  <p>You can also put a doodle box around anything using the class <code>.doodle .border</code> or <code>.doodle-border</code>.</p>
+
+  <h2>Thanks</h2>
+  <p>
+    This stylesheet is heavily inspired by the <a href="https://medialoot.com/item/hand-drawn-vector-ui-kit/">Hand Drawn Vector UI Kit by Tony Thomas</a>.
+    I wanted a CSS theme that looked just like that, so I drew a bunch of similar components and got them working on the web.
+  </p>
+  <p>HTML coverage using <a href="https://github.com/dbox/html5-kitchen-sink/">HTML Kitchen Sink</a>.</p>
+  <p>The font is <a href="http://www.fontsquirrel.com/fonts/short-stack">Short Stack</a>.</p>
+
+  <h2>Other HTML Elements</h2>
+  <hr>
+  <section>
+    <hgroup>
+      <h1>h1 HTML5 Kitchen Sink</h1>
+      <h2>h2 Back in my quaint <a href="#">garden</a></h2>
+      <h3>h3 Jaunty <a href="#">zinnias</a> vie with flaunting phlox</h3>
+      <h4>h4 Five or six big jet planes zoomed quickly by the new tower.</h4>
+      <h5>h5 Expect skilled signwriters to use many jazzy, quaint old alphabets effectively.</h5>
+      <h6>h6 Pack my box with five dozen liquor jugs.</h6>
+    </hgroup>
+  </section>
+  <hr>
+  <section>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <article>
+      <p>This paragraph is nested inside an article. It contains many different, sometimes useful, <a href="https://www.w3schools.com/tags/">HTML5 tags</a>.
+      Of course there are classics like <em>emphasis</em>, <strong>strong</strong>, and <small>small</small>
+        but there are many others as well.
+        Hover the following text for abbreviation tag: <abbr title="abbreviation">abbr</abbr>. Similarly, you can use acronym tag like this: <acronym title="For The Win">ftw</acronym>.
+        You can define <del>deleted text</del>
+        which often gets replaced with <ins>inserted</ins>
+        text.
+      </p>
+      <p>You can also use <kbd>keyboard text</kbd>, which sometimes is styled similarly to the <code>&lt;code&gt;</code>
+        or <samp>samp</samp>
+        tags. Even more specifically, there is a tag just for <var>variables</var>. Not to be mistaken with blockquotes
+        
+        below, the quote tag lets you denote something as
+        <q>quoted text</q>. Lastly don't forget the sub (H<sub>2</sub>O) and sup (E = MC<sup>2</sup>) tags.
+      </p>
+    </article>
+    <aside>This is an aside.</aside>
+    <footer>This is footer for this section</footer>
+  </section>
+  <hr>
+  <section>
+    <ul>
+      <li>Unordered List item one
+        <ul>
+          <li>Nested list item
+            <ul>
+              <li>Level 3, item one</li>
+              <li>Level 3, item two</li>
+              <li>Level 3, item three</li>
+              <li>Level 3, item four</li>
+            </ul>
+          </li>
+          <li>List item two</li>
+          <li>List item three</li>
+          <li>List item four</li>
+        </ul>
+      </li>
+      <li>List item two</li>
+      <li>List item three</li>
+      <li>List item four</li>
+    </ul>
+    <hr>
+    <ol>
+      <li>List item one
+        <ol>
+          <li>List item one
+            <ol>
+              <li>List item one</li>
+              <li>List item two</li>
+              <li>List item three</li>
+              <li>List item four</li>
+            </ol>
+          </li>
+          <li>List item two</li>
+          <li>List item three</li>
+          <li>List item four</li>
+        </ol>
+      </li>
+      <li>List item two</li>
+      <li>List item three</li>
+      <li>List item four</li>
+    </ol>
+  </section>
+  <hr>
+  <section>
+    <blockquote>
+      <p>Blockquote: I quickly explained that many big jobs involve few hazards</p>
+    </blockquote>
+    <blockquote>
+      <p>
+        This is a mult-line blockquote with a cite reference. People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick
+        carefully. I’m actually as proud of the things we haven’t done as the things I have done. Innovation is saying no to 1,000 things.
+        <cite>Steve Jobs – Apple Worldwide Developers’ Conference, 1997</cite>
+      </p>
+    </blockquote>
+  </section>
+  <hr>
+  <section>
+    <table>
+      <caption>Tables can have captions now.</caption>
+      <thead>
+        <tr>
+          <th>Person</th>
+          <th>Number</th>
+          <th>Third Column</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Someone Lastname</td>
+          <td>900</td>
+          <td>Nullam quis risus eget urna mollis ornare vel eu leo.</td>
+        </tr>
+        <tr>
+          <td><a href="#">Person Name</a></td>
+          <td>1200</td>
+          <td>Vestibulum id ligula porta felis euismod semper. Donec ullamcorper nulla non metus auctor fringilla.</td>
+        </tr>
+        <tr>
+          <td>Another Person</td>
+          <td>1500</td>
+          <td>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam id dolor id nibh ultricies vehicula ut id elit.</td>
+        </tr>
+        <tr>
+          <td>Last One</td>
+          <td>2800</td>
+          <td>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <hr>
+  <section>
+    <dl>
+      <dt>Definition List Title</dt>
+      <dd>Definition list division.</dd>
+      <dt>Kitchen Sink</dt>
+      <dd>Used in expressions to describe work in which all conceivable (and some inconceivable) sources have been mined. In this case, a bunch of markup.</dd>
+      <dt>aside</dt>
+      <dd>Defines content aside from the page content</dd>
+      <dt>blockquote</dt>
+      <dd>Defines a section that is quoted from another source</dd>
+    </dl>
+  </section>
+  <hr>
+  <section>
+    <address>1 Infinite Loop<br>
+      Cupertino, CA 95014<br>
+      United States
+    </address>
+  </section>
+  <hr>
+  <section>
+    <pre>pre {
+  display: block;
+  padding: 7px;
+  background-color: #F5F5F5;
+  border: 1px solid #E1E1E8;
+  border-radius: 3px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: Menlo, Monaco;
+  line-height: 160%;
+}      </pre>
+  </section>
+  <hr>
+  <figure><img src="https://www.fillmurray.com/505/314">
+    <figcaption>Fig1. A picture of Bill Murray from <a href="https://www.fillmurray.com/">fillmurray.com</a></figcaption>
+  </figure>
+  <hr>
+  <section>
+    <form>
+      <p>
+        <label for="example-input-text">Text</label>
+        <input id="example-input-text" type="text" placeholder="Enter some text here">
+      </p>
+      <p>
+        <label for="example-input-email">Email address</label>
+        <input id="example-input-email" type="email" placeholder="Enter email">
+      </p>
+      <p>
+        <label for="example-input-password1">Number</label>
+        <input id="example-input-number" type="number" placeholder="Number">
+      </p>
+      <p>
+        <label for="example-input-password">Password</label>
+        <input id="example-input-password" type="password" placeholder="Password">
+      </p>
+      <p>
+        <label for="example-input-search">Search</label>
+        <input id="example-input-serach" type="search" placeholder="Search ..">
+      </p>
+      <p>
+        <label for="example-input-tel">Telephone number</label>
+        <input id="example-input-tel" type="tel" placeholder="Telephone number">
+      </p>
+      <p>
+        <label for="example-input-url">Url</label>
+        <input id="example-input-url" type="url" placeholder="Enter a url here">
+      </p>
+      <p>
+        <label for="example-input-color">Color</label>
+        <input id="example-input-color" type="color" placeholder="#fff">
+      </p>
+      <p>
+        <label for="example-input-date">Date</label>
+        <input id="example-input-date" type="date" placeholder="date">
+      </p>
+      <p>
+        <label for="example-input-date-time">Date / Time</label>
+        <input id="example-input-date-time" type="datetime" placeholder="date / time">
+      </p>
+      <p>
+        <label for="example-input-date-time-local">Date / Time local</label>
+        <input id="example-input-date-time-local" type="datetime-local" placeholder="date / time local">
+      </p>
+      <p>
+        <label for="example-input-month">Month</label>
+        <input id="example-input-month" type="month" placeholder="Month">
+      </p>
+      <p>
+        <label for="example-input-week">Week</label>
+        <input id="example-input-week" type="week" placeholder="Week">
+      </p>
+      <p>
+        <label for="example-input-time">Time</label>
+        <input id="example-input-time" type="time" placeholder="Time">
+      </p>
+      <p>
+        <label for="example-select1">Example select</label>
+        <select id="example-select1">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </p>
+      <p>
+        <label for="example-select2">Example multiple select</label>
+        <select id="example-select2" multiple="">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </p>
+      <p>
+        <label for="example-textarea">Example textarea</label>
+        <textarea id="example-textarea" rows="3"></textarea>
+      </p>
+      <p>
+        <label for="example-input-file">File input</label>
+        <input id="example-input-file" type="file">
+      </p>
+      <fieldset>
+        <legend>I am legend</legend>
+        <div>
+          <label>
+            <input id="optionsR-radios1" type="radio" name="options-radios" value="option1" checked="">
+            Option one is this and that—be sure to include why it's great
+          </label>
+        </div>
+        <div>
+          <label>
+            <input id="options-radios2" type="radio" name="options-radios" value="option2">
+            Option two can be something else and selecting it will deselect option one
+          </label>
+        </div>
+        <div>
+          <label>
+            <input id="options-radios3" type="radio" name="optionsRadios" value="option3" disabled="">
+            Option three is disabled
+          </label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>I am also legend</legend>
+        <p>
+          <input type="checkbox" name="check1" id="check1">
+          <label for="check1">Check me out</label>
+        </p>
+        <p>
+          <input type="checkbox" name="check2" id="check2">
+          <label for="check2">Or check me out</label>
+        </p>
+        <p>
+          <input type="checkbox" name="check3" id="check3" disabled>
+          <label for="check3">Or check me out but no click</label>
+        </p>
+        <p>
+          <input type="checkbox" name="check3" id="check3" checked disabled>
+          <label for="check3">I am checked but no click</label>
+        </p>
+      </fieldset>
+      <p>
+        <button type="button" name="button">Button</button>
+        <input type="button" name="input" value="Input Button">
+        <input type="submit" name="submit" value="Submit Button">
+        <input type="reset" name="reset" value="Reset Button">
+        <button name="disabledbutton" disabled>Disabled button</button>
+      </p>
+    </form>
+  </section>
+  <h2>Hello. You have reached the end of the page. Thank you for checking it out. Have a nice day.</h2>
+</main> 
+</body>
+</html>
