@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Task
+from django.utils.timezone import now
 from .forms import TaskForm
+
 
 
 # Display the list of tasks (filtered by user)
@@ -19,8 +21,21 @@ def task_list(request):
 def add_task(request):
     if request.method == 'POST':
         task_title = request.POST.get('title')
-        if task_title:
-            Task.objects.create(title=task_title, user=request.user)  # Ensure task is linked to the user
+        task_description = request.POST.get('description')  # Capture description
+        task_due_date = request.POST.get('due_date')  # Capture due date
+        task_priority = request.POST.get('priority')  # Capture priority
+        task_category = request.POST.get('category')  # Capture category
+
+        if task_title:  # Ensure title is provided
+            Task.objects.create(
+                title=task_title,
+                description=task_description,
+                due_date=task_due_date if task_due_date else None,
+                priority=task_priority if task_priority else "M",  # Default to Medium
+                category=task_category if task_category else "P",  # Default to Personal
+                user=request.user,
+                created=now()  # Automatically set the current time
+            )
         return redirect('task_list')
     return render(request, 'tasks/add_task.html')  # Correct template path
 
