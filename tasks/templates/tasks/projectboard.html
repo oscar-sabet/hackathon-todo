@@ -1,37 +1,71 @@
 {% block content %}
-
 <div class="kanban-board">
     <div class="kanban-column">
         <h2>Pending</h2>
-        <ul>
-            {% for task in pending %}
-            <li>{{ task.title }}</li>
-            <li>{{ task.description }}</li>
-            <li>{{ task.due_date }}</li>
+        <div class="post-it-container">
+            {% for task in pending_tasks %}
+            <div class="post-it">
+                <p>{{ task.title }}</p>
+            </div>
             {% endfor %}
-        </ul>
+        </div>
     </div>
     <div class="kanban-column">
         <h2>In Progress</h2>
-        <ul>
-            {% for task in in_progress %}
-            <li>{{ task.title }}</li>
-            <li>{{ task.description }}</li>
-            <li>{{ task.due_date }}</li>
+        <div class="post-it-container">
+            {% for task in in_progress_tasks %}
+            <div class="post-it">
+                <p>{{ task.title }}</p>
+            </div>
             {% endfor %}
-        </ul>
+        </div>
     </div>
     <div class="kanban-column">
         <h2>Completed</h2>
-        <ul>
-            {% for task in completed %}
-            <li>{{ task.title }}</li>
-            <li>{{ task.description }}</li>
-            <li>{{ task.due_date }}</li>
+        <div class="post-it-container">
+            {% for task in completed_tasks %}
+            <div class="post-it">
+                <p>{{ task.title }}</p>
+            </div>
             {% endfor %}
-        </ul>t 
+        </div>
     </div>
 </div>
 
-
+<style>
+    .kanban-board {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    .kanban-column {
+        flex: 1;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    .kanban-column h2 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .post-it-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .post-it {
+        background-color: #ffeb3b; /* Yellow post-it note color */
+        padding: 10px;
+        border: 1px solid #fbc02d;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        font-family: 'Comic Sans MS', cursive, sans-serif; /* Mimic handwritten text */
+        color: #333;
+    }
+    .post-it p {
+        margin: 0;
+        word-wrap: break-word;
+    }
+</style>
 {% endblock content %}

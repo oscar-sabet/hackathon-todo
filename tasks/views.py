@@ -2,13 +2,19 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Task
 from django.utils.timezone import now
+from .forms import TaskForm
+
 
 
 # Display the list of tasks (filtered by user)
 @login_required
 def task_list(request):
     tasks = Task.objects.filter(user=request.user)  # Restrict to the logged-in user's tasks
-    return render(request, 'tasks/task_list.html', {'tasks': tasks})
+    # return render(request, 'tasks/task_list.html', {'tasks': tasks})
+
+    form = TaskForm()
+    return render(request, 'tasks/task_list.html', {'form': form, 'tasks': tasks})
+
 
 # Add a new task (assign to the logged-in user)
 @login_required
@@ -33,6 +39,7 @@ def add_task(request):
         return redirect('task_list')
     return render(request, 'tasks/add_task.html')  # Correct template path
 
+
 # Mark a task as completed (only if the user owns the task)
 @login_required
 def mark_completed(request, task_id):
@@ -41,6 +48,7 @@ def mark_completed(request, task_id):
     task.save()
     return redirect('task_list')
 
+
 # Delete a task (only if the user owns the task)
 @login_required
 def delete_task(request, task_id):
@@ -48,9 +56,16 @@ def delete_task(request, task_id):
     task.delete()
     return redirect('task_list')
 
-
 @login_required
 def board(request):
+    pending_tasks = Task.objects.filter(user=request.user, status='pending')
+    in_progress_tasks = Task.objects.filter(user=request.user, status='in_progress')
+    completed_tasks = Task.objects.filter(user=request.user, status='completed')
+    return render(request, 'tasks/projectboard.html', {
+        'pending_tasks': pending_tasks,
+        'in_progress_tasks': in_progress_tasks,
+        'completed_tasks': completed_tasks,
+    })
     """
     Renders a task board view, categorizing tasks by their status.
 
@@ -78,3 +93,7 @@ def board(request):
         "in_progress": in_progress,
         "completed": completed,
     })
+
+
+def home(request):
+    return render(request, 'tasks/home.html')

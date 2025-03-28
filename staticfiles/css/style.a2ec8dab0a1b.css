@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Short+Stack&display=swap');
+body {
+  font-family: 'Short Stack', cursive;
+}
+
+:root {
+    --navbar-height: 62px;
+    --grey: #808080;
+    --red: #eb3a3a;
+    --green: #2ed32e;
+    --blue: #0000ff;
+
+    --pastel-red: #f99;
+    --pastel-blue: #99f;
+    --pastel-green: #cfc;
+    --pastel-yellow: #ffc;
+}
+/* CUSTOM CLASSES */
+.red-fg {
+    color: var(--red) !important;
+}
+.green-fg {
+    color: var(--green) !important;
+}
+.blue-fg {
+    color: var(--blue) !important;
+}
+.pastel-red-bg {
+    background-color: var(--pastel-red) !important;
+}
+.pastel-blue-bg {
+    background-color: var(--pastel-blue) !important;
+}
+.pastel-green-bg {
+    background-color: var(--pastel-green) !important;
+}
+.pastel-yellow-bg {
+    background-color: var(--pastel-yellow) !important;
+}
+.doodle-bg {
+    background-color: #FDF7F1 !important;
+}
+/* General */
+body {
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #FDF7F1;
+}
+main {
+    /* margin-top: --navbar-height; */
+    min-height: calc(100vh);
+    padding-top: var(--navbar-height);
+}
+/* Navbar */
+#navbar li {
+    list-style: none;
+}
+
+/* Paper */
+/* Taken from -> https://codepen.io/designcouch/pen/bGvzKE */
+/* Images from -> https://cdn.lapa.ninja/assets/images/backer-news.webp */
+  #notebook-paper {
+    width:960px;
+    height:1109px;
+    background: linear-gradient(to bottom,white 29px,#00b0d7 1px);
+    margin:50px auto;
+    background-size: 100% 30px;
+    position:relative;
+    padding-top:150px;
+    padding-left:160px;
+    padding-right:20px;
+    overflow:hidden;
+    border-radius:5px;
+    -webkit-box-shadow:3px 3px 3px rgba(0,0,0,.2),0px 0px 6px rgba(0,0,0,.2);
+    -moz-box-shadow:3px 3px 3px rgba(0,0,0,.2),0px 0px 6px rgba(0,0,0,.2);
+    -ms-box-shadow:3px 3px 3px rgba(0,0,0,.2),0px 0px 6px rgba(0,0,0,.2);
+    -o-box-shadow:3px 3px 3px rgba(0,0,0,.2),0px 0px 6px rgba(0,0,0,.2);
+    box-shadow:3px 3px 3px rgba(0,0,0,.2),0px 0px 6px rgba(0,0,0,.2);
+    &:before {
+      content:'';
+      display:block;
+      position:absolute;
+      z-index:1;
+      top:0;
+      left:140px;
+      height:100%;
+      width:1px;
+      background:#db4034;
+    }
+    header {
+      height:150px;
+      width:100%;
+      background:white;
+      position:absolute;
+      top:0;
+      left:0;
+      h1 {
+        font-size:60px;
+        line-height:60px;
+        padding:122px 20px 0 160px;
+      }
+    }
+    #content {
+      margin-top:65px;
+      font-size:20px;
+      line-height:30px;
+      p {
+        margin:0 0 30px 0;
+      }
+      ul {
+        margin:0 0 30px 0;
+      }
+    }
+  }
+
+  /* Sticky Note Styles */
+.sticky-note {
+    width: 250px;
+    height: 250px;
+    background-color: #fdfd96; /* Light yellow color */
+    /* border: 1px solid #f0e68c; Slightly darker yellow for the border */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Shadow for a lifted effect */
+    border-radius: 5px; /* Rounded corners */
+    padding: 25px;
+    font-family: 'Short Stack', cursive; /* Matches your existing font */
+    font-size: 16px;
+    color: #333; /* Dark text for readability */
+    position: relative;
+    /* margin: 20px; */
+    transform: rotate(-1deg); /* Slight rotation for a casual look */
+}
+.sticky-note:nth-child(1n) {
+    transform: rotate(-1.5deg); /* Opposite rotation for variety */
+}
+.sticky-note:nth-child(2n) {
+    transform: rotate(1.5deg); /* Opposite rotation for variety */
+}
+.sticky-note:nth-child(3n) {
+    transform: rotate(-1.5deg); /* Opposite rotation for variety */
+}
+.sticky-note:nth-child(4n) {
+    transform: rotate(2deg); /* Opposite rotation for variety */
+}
+/* Add a pin effect */
+.sticky-note::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-color: #ff6347; /* Red pin color */
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover effect for interaction */
+.sticky-note:hover {
+    transform: rotate(0deg) scale(1.05); /* Straighten and slightly enlarge */
+    transition: transform 0.2s ease-in-out;
+}
