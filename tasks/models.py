@@ -21,15 +21,15 @@ class Task(models.Model):
         return self.title  # Ensure this line is indented properly
 
     PRIORITY_CHOICES = [
-        ("L", "Low"),
-        ("M", "Medium"),
-        ("H", "High"),
+        ("Low", "Low"),
+        ("Medium", "Medium"),
+        ("High", "High"),
     ]
 
     CATEGORY_CHOICES = [
-        ("W", "Work"),
-        ("P", "Personal"),
-        ("H", "Home"),
+        ("Work", "Work"),
+        ("Personal", "Personal"),
+        ("Home", "Home"),
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -41,17 +41,17 @@ class Task(models.Model):
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default='pending'
+        default='Pending'
         )
     priority = models.CharField(
-        max_length=1,
+        max_length=6,
         choices=PRIORITY_CHOICES,
-        default="M"
+        default="Medium"
         )
     category = models.CharField(
-        max_length=1,
+        max_length=8,
         choices=CATEGORY_CHOICES,
-        default="P"
+        default="Personal"
         )
 
     def __str__(self):

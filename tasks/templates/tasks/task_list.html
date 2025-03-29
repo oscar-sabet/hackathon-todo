@@ -4,19 +4,20 @@
 
 {% block title %}ToodleDo - Task List{% endblock %}
 {% block content %}
-<div class="container mt-4">
+
+<div class="container mt-4" style="background-image: url('{% static 'images/background.jpg' %}'); background-size: cover; background-repeat: no-repeat; background-attachment: scroll; background-position: center;">
     <div class="row">
-        <div class="col-md-10 col-lg-8 mx-auto">
-            <h1 class="">Task List<button type="button" class="btn btn-secondary float-end" data-bs-toggle="modal" data-bs-target="#createTaskModal">
+        <div class="mx-auto">
+            <h1 id="list-title">Task List<button id="new-task-btn" type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#createTaskModal">
         <i class="fa-solid fa-pen"></i></button></h1>
         </div>
 
         <div class="accordion" id="taskAccordion">
             {% for task in tasks %}
-            <div class="accordion-item col-md-10 col-lg-8 mx-auto">
+            <div class="accordion-item mx-auto">
                 <h2 class="accordion-header" id="heading{{ forloop.counter }}">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
-                        <span class="me-auto">{{ task.title }}</span><span class="text-center">{{ task.due_date }}</span> <span class="ms-auto"><form method="post" action="{% url 'mark_completed' task.id %}" class="d-inline">
+                        <span class="me-auto task-title">{{ task.title }}</span><span id="due-date" class="text-center">{{ task.due_date }}</span> <span class="ms-auto"><form method="post" action="{% url 'mark_completed' task.id %}" class="d-inline task-complete">
     {% csrf_token %}
     <input type="hidden" name="status" value="Pending"> <!-- Default value when unchecked -->
     <input type="checkbox" class="form-check-input ms-2" {% if task.status == "Completed" %}checked{% endif %} name="status" value="Completed" onchange="this.form.submit()"> Complete
@@ -25,17 +26,18 @@
                 </h2>
                 <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#taskAccordion">
                     <div class="accordion-body">
+                        <p><strong>Description:</strong> {{ task.description }}</p>
                         <p><strong>Status:</strong> {{ task.status }}</p>
                         <p><strong>Due Date:</strong> {{ task.due_date }}</p>
                         <p><strong>Priority:</strong> {{ task.priority }}</p>
                         <p><strong>Category:</strong> {{ task.category }}</p>
-                        <p><strong>Description:</strong> {{ task.description }}</p>
+                        
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" 
                             onclick="document.getElementById('taskTitle').innerText = '{{ task.title }}'; document.getElementById('deleteForm').action = '{% url 'delete_task' task.id %}'">
                             <i class="fa-solid fa-trash"></i>
                             </button>
-                            <a href="{% url 'edit_task' task.id %}" id="editbtn" class="btn btn-primary btn-sm ms-2">
+                            <a href="{% url 'edit_task' task.id %}" id="editbtn" class="btn btn-sm ms-2">
                                 <i class="fa-solid fa-edit"></i>
                             </a>
                             
