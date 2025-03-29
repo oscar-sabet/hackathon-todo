@@ -128,6 +128,23 @@
   color: #3c3c3c;
 }
 
+#new-task-btn {
+  background-color: #FDF7F1;
+  font-family: 'Short Stack', cursive;
+  font-size: 0.5em;
+  color: #3c3c3c;
+}
+
+#new-task-btn:hover {
+  background-color: blue;
+  color: #ffffff;
+}
+
+#editbtn:hover {
+  background-color: #2ed32e;
+  color: #ffffff;
+}
+
 .doodle button:disabled {
   color: grey;
 }
@@ -166,7 +183,7 @@
 }
 
 .doodle input[type="checkbox"]:checked:after, .doodle input[type="radio"]:checked:after {
-  content: "*";
+  content: "✔";
 }
 
 .doodle input[type="file"]::file-selector-button {
