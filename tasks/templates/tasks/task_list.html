@@ -23,7 +23,7 @@
                                 <input type="hidden" name="status" value="pending"> <!-- Default value when unchecked -->
                                 <input type="checkbox" class="form-check-input ms-2" {% if task.status == "completed" %}checked{% endif %} name="status" value="completed" onchange="this.form.submit()"> Complete
                             </form>
- </span>
+                        </span>
                     </button>  
                 </h2>
                 <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#taskAccordion">
@@ -68,7 +68,7 @@
                 
                     {% csrf_token %}
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-12">
                             {{ form.title|as_crispy_field }}
                         </div>
                         <div class="col-md-6">
@@ -83,7 +83,7 @@
                         <div class="col-md-6">
                             {{ form.category|as_crispy_field }}
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-12">
                             {{ form.description|as_crispy_field }}
                         </div>
                     </div>    

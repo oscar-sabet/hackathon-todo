@@ -9,6 +9,7 @@ body {
     --red: #eb3a3a;
     --green: #2ed32e;
     --blue: #0000ff;
+    --yellow: #9c9c35;
 
     --pastel-red: #f99;
     --pastel-blue: #99f;
@@ -24,6 +25,9 @@ body {
 }
 .blue-fg {
     color: var(--blue) !important;
+}
+.yellow-fg {
+    color: var(--yellow) !important;
 }
 .pastel-red-bg {
     background-color: var(--pastel-red) !important;
@@ -51,6 +55,12 @@ main {
     min-height: calc(100vh);
     padding-top: var(--navbar-height);
 }
+
+#list-title {
+    font-size: 2.5em;
+    margin: 20px;
+}
+
 /* Navbar */
 #navbar li {
     list-style: none;
@@ -159,4 +169,67 @@ main {
 .sticky-note:hover {
     transform: rotate(0deg) scale(1.05); /* Straighten and slightly enlarge */
     transition: transform 0.2s ease-in-out;
+}
+
+/* Task List */
+
+#due-date {
+    display: none;
+}
+
+.task-title {
+    text-align: start;
+}
+
+.task-complete {
+    text-align: end;
+    font-size: 1rem;
+}
+
+.accordion-button::after {
+    margin-left: 0;
+}
+
+/* PProject board */
+
+.kanban-board {
+            
+    margin-top: 20px;
+}
+.kanban-column h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.post-it-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.post-it {
+    background-color: #ffeb3b;
+    border: 1px solid #fbc02d;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.post-it p {
+    margin: 0;
+    word-wrap: break-word;
+}
+
+/* media  */
+
+@media (min-width: 768px) {
+
+    #list-title {
+        font-size: 3em;
+        font-weight: bold;
+        text-align: center;
+    }
+}
+
+@media (min-width: 992px) {
+    #due-date {
+        display: block;
+        font-size: 1rem;
+    }
 }

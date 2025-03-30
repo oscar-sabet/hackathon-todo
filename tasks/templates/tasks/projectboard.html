@@ -3,101 +3,57 @@
 
 {% block content %}
 
-<div class="kanban-board">
-    <!-- Pending Tasks -->
-    <div class="kanban-column">
-        <h2>Pending</h2>
-        <div class="post-it-container" id="pending">
-            {% for task in pending_tasks %}
-            <div class="post-it" data-task-id="{{ task.id }}" draggable="true">
-                <p contenteditable="true" class="editable-task">{{ task.title }}</p>
+<div class="kanban-board container">
+    <div class="row w-100">
+        
+        <!-- Pending Tasks -->
+        <div class="p-1 col-12 col-lg-4">
+            <div class="kanban-column doodle-border p-2">
+                <h2>Pending</h2>
+                <div class="post-it-container" id="pending">
+                    {% for task in pending_tasks %}
+                    <div class="post-it p-3" data-task-id="{{ task.id }}" draggable="true">
+                        <p contenteditable="true" class="editable-task">{{ task.title }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-            {% endfor %}
         </div>
-    </div>
 
-    <!-- In Progress Tasks -->
-    <div class="kanban-column">
-        <h2>In Progress</h2>
-        <div class="post-it-container" id="in_progress">
-            {% for task in in_progress_tasks %}
-            <div class="post-it" data-task-id="{{ task.id }}" draggable="true">
-                <p contenteditable="true" class="editable-task">{{ task.title }}</p>
+        <!-- In Progress Tasks -->
+        <div class="p-1 col-12 col-lg-4">
+            <div class="kanban-column doodle-border p-2">
+                <h2>In Progress</h2>
+                <div class="post-it-container" id="in_progress">
+                    {% for task in in_progress_tasks %}
+                    <div class="post-it p-3" data-task-id="{{ task.id }}" draggable="true">
+                        <p contenteditable="true" class="editable-task">{{ task.title }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-            {% endfor %}
         </div>
-    </div>
 
-    <!-- Completed Tasks -->
-    <div class="kanban-column">
-        <h2>Completed</h2>
-        <div class="post-it-container" id="completed">
-            {% for task in completed_tasks %}
-            <div class="post-it" data-task-id="{{ task.id }}" draggable="true">
-                <p contenteditable="true" class="editable-task">{{ task.title }}</p>
+        <!-- Completed Tasks -->
+        <div class="p-1 col-12 col-lg-4">
+            <div class="kanban-column  doodle-border p-2">
+                <h2>Completed</h2>
+                <div class="post-it-container" id="completed">
+                    {% for task in completed_tasks %}
+                    <div class="post-it p-3" data-task-id="{{ task.id }}" draggable="true">
+                        <p contenteditable="true" class="editable-task">{{ task.title }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-            {% endfor %}
         </div>
+
     </div>
 </div>
-
-        <!-- Removed the "Add Task" button -->
-    </div>
-</div>
-
-        <style>
-            .kanban-board {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .kanban-column {
-            flex: 1;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-        .kanban-column h2 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .post-it-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .post-it {
-            background-color: #ffeb3b;
-            padding: 10px;
-            border: 1px solid #fbc02d;
-            border-radius: 5px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            color: #333;
-        }
-        .post-it p {
-            margin: 0;
-            word-wrap: break-word;
-        }
-        .add-task-btn {
-            margin-top: 10px;
-            padding: 5px 10px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;g
-        }
-        .add-task-btn:hover {
-            background-color: #45a049;
-        }
-    </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const containers = document.querySelectorAll('.post-it-container');
-        console.log(containers);
         let draggedTask = null;
 
         // Add dragstart and dragend event listeners to tasks
