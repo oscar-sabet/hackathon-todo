@@ -67,9 +67,8 @@ main {
 }
 
 /* Paper */
-/* Taken from -> https://codepen.io/designcouch/pen/bGvzKE */
-/* Images from -> https://cdn.lapa.ninja/assets/images/backer-news.webp */
-  #notebook-paper {
+
+  /* #notebook-paper {
     width:960px;
     height:1109px;
     background: linear-gradient(to bottom,white 29px,#00b0d7 1px);
@@ -121,7 +120,7 @@ main {
         margin:0 0 30px 0;
       }
     }
-  }
+  } */
 
   /* Sticky Note Styles */
 .sticky-note {
