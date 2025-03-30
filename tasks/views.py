@@ -74,11 +74,9 @@ def mark_completed(request, task_id):
     task = get_object_or_404(Task, id=task_id, user=request.user)  # Ensure task belongs to the user
     if request.method == 'POST':
         new_status = request.POST.get('status') 
-        print(new_status)
         # Get the status from the form
         if new_status in ['pending', 'completed']:  # Validate the status
             task.status = new_status  # Update the task's status
-            print(" task status updated", task.status)
             task.save()  # Save the changes
     return redirect('task_list')  # Redirect to the task list view
 
