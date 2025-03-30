@@ -5,7 +5,10 @@
 {% block title %}ToodleDo - Task List{% endblock %}
 {% block content %}
 
-<div class="container mt-4" style="background-image: url('{% static 'images/background.jpg' %}'); background-size: cover; background-repeat: no-repeat; background-attachment: scroll; background-position: center;">
+<!-- Removed paper-BG because it looks bad, code below -->
+{% comment %} style="background-image: url('{% static 'images/background.jpg' %}'); background-size: cover; background-repeat: no-repeat; background-attachment: scroll; background-position: center;" {% endcomment %}
+
+<div class="container mt-4" >
     <div class="row">
         <div class="mx-auto">
             <h1 id="list-title">Task List<button id="new-task-btn" type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#createTaskModal">
