@@ -84,3 +84,5 @@ This project was created using the Django framework with assistance from Microso
 [Doodle CSS Pack](https://chr15m.github.io/DoodleCSS/)
 
 [Images](https://cdn.lapa.ninja/assets/images/backer-news.webp )
+
+## Screenshots

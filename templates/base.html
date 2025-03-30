@@ -12,10 +12,17 @@
         <meta name="author" content="Toodledo"> 
 
         <!-- Favicon -->
+        <link rel="icon" type="image/png" href="{% static 'favicons/favicon-96x96.png' %}" sizes="96x96">
+        <link rel="icon" type="image/svg+xml" href="{% static 'favicons/favicon.svg' %}">
+        <link rel="shortcut icon" href="{% static 'favicons/favicon.ico' %}">
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
+        <meta name="apple-mobile-web-app-title" content="MyWebSite">
         <link rel="manifest" href="{% static 'favicons/site.webmanifest' %}">
+
+        {% comment %} <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}"> {% endcomment %}
+        {% comment %} <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}"> {% endcomment %}
+        {% comment %} <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}"> {% endcomment %}
+        {% comment %} <link rel="manifest" href="{% static 'favicons/site.webmanifest' %}"> {% endcomment %}
 
         <!-- Bootstrap 5 CSS -->
         <link
