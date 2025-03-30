@@ -86,3 +86,15 @@ This project was created using the Django framework with assistance from Microso
 [Images](https://cdn.lapa.ninja/assets/images/backer-news.webp )
 
 ## Screenshots
+
+Landing Page
+
+![Landing Page](readme/todo-hack-b58aed29fc9d.herokuapp.com_.png)
+
+Task List
+
+![Task List](readme/todo-hack-b58aed29fc9d.herokuapp.com_task_list_.png)
+
+Project Board
+
+![Project Board](readme/todo-hack-b58aed29fc9d.herokuapp.com_board_.png)
