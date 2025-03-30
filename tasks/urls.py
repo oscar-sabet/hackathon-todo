@@ -13,4 +13,5 @@ urlpatterns = [
         name="mark_completed",
     ),
     path("update-task-status/<int:task_id>/", views.update_task_status, name="update_task_status"),
+    path("edit-task/<int:task_id>/", views.edit_task, name="edit_task"),
 ]
