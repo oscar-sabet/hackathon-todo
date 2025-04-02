@@ -6,7 +6,7 @@ from .forms import TaskForm
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-
+from django.contrib import messages
 
 
 # Display the list of tasks (filtered by user)
@@ -25,18 +25,47 @@ def task_list(request):
     form = TaskForm()
     return render(request, 'tasks/task_list.html', {'form': form, 'tasks': tasks})
 
-
-# Add a new task (assign to the logged-in user)
-@csrf_exempt
 @login_required
 def add_task(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        title = data.get('title', 'New Task')
-        status = data.get('status', 'pending')
-        task = Task.objects.create(title=title, status=status, user=request.user)
-        return JsonResponse({'success': True, 'task_id': task.id})
-    return JsonResponse({'success': False}, status=400)
+    """
+    Create a new task for the logged-in user.
+
+    This view handles the creation of a new task for the currently logged-in
+    user. The task details are provided via a POST request.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponseRedirect: Redirects to the list view after creating the
+        task.
+    """
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.user = request.user
+            task.status = "pending"
+            task.save()
+            messages.success(request, "Task created successfully.")
+        else:
+            for error in form.errors.values():
+                messages.error(request, error)
+        return redirect("task_list")
+    return redirect("task_list")
+
+
+# Add a new task (assign to the logged-in user)
+# @csrf_exempt
+# @login_required
+# def add_task(request):
+#     if request.method == 'POST':
+#         data = json.loads(request.body)
+#         title = data.get('title', 'New Task')
+#         status = data.get('status', 'pending')
+#         task = Task.objects.create(title=title, status=status, user=request.user)
+#         return JsonResponse({'success': True, 'task_id': task.id})
+#     return JsonResponse({'success': False}, status=400)
 
 # Edit an existing task (only if the user owns the task)
 @login_required
